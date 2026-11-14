@@ -442,9 +442,9 @@ export default function SidebarLayout() {
       >
         <Outlet />
 
-        {/* Subpage Bottom Next/Previous Pagination (Suppressed on Overview '/') */}
+        {/* Subpage Bottom Next/Previous Pagination (Suppressed on Overview '/', Visible only on mobile/tablet below xl) */}
         {isSubpage && currentPath !== '/completeness' && (
-          <div className="mt-16 pt-8 border-t border-[#E4DBD0] max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+          <div className="mt-16 pt-8 border-t border-[#E4DBD0] max-w-5xl mx-auto flex xl:hidden flex-col sm:flex-row items-center justify-between gap-4 font-sans">
             {prev ? (
               <Link
                 to={prev.path}
