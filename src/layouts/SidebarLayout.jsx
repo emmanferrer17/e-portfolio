@@ -3,6 +3,16 @@ import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen, Menu, X, ArrowUpRight, Home, LayoutGrid, ArrowUp } from 'lucide-react';
 import { VISIBLE_SECTIONS, getAdjacentSections } from './navigation';
 
+// Section V Curriculum Task Sheets metadata for persistent header switcher
+const CURRICULUM_TASK_SHEETS = [
+  { id: 'ts2', num: 'TS2', shortTitle: 'DLL', path: '/curriculum/ts2' },
+  { id: 'ts3', num: 'TS3', shortTitle: 'Competencies', path: '/curriculum/ts3' },
+  { id: 'ts4', num: 'TS4', shortTitle: 'Management', path: '/curriculum/ts4' },
+  { id: 'ts5', num: 'TS5', shortTitle: 'Lesson Log', path: '/curriculum/ts5' },
+  { id: 'ts6', num: 'TS6', shortTitle: 'Lesson Plans', path: '/curriculum/ts6' },
+  { id: 'ts7', num: 'TS7', shortTitle: 'Assessment', path: '/curriculum/ts7' },
+];
+
 export default function SidebarLayout() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -18,9 +28,12 @@ export default function SidebarLayout() {
   const { prev, next } = getAdjacentSections(baseSectionPath);
   const isSubpage = currentPath !== '/';
 
-  // Sub-route segment (e.g. ts2 -> TS2)
-  const isTaskSheetRoute = currentPath.startsWith('/curriculum/ts');
-  const taskSheetSegment = isTaskSheetRoute ? currentPath.split('/')[2]?.toUpperCase() : null;
+  // Section V Curriculum route & active Task Sheet detection
+  const isCurriculumRoute = currentPath.startsWith('/curriculum');
+  const activeCurriculumTsId = isCurriculumRoute
+    ? (currentPath.split('/')[2]?.toLowerCase() || 'ts2')
+    : null;
+  const taskSheetSegment = activeCurriculumTsId ? activeCurriculumTsId.toUpperCase() : null;
 
   // Track scroll progress and scroll positions for adaptive header & back-to-top button
   useEffect(() => {
@@ -85,106 +98,152 @@ export default function SidebarLayout() {
 
       {/* Adaptive Shrinking Sticky Top Header */}
       <header
-        className={`sticky top-0 z-40 border-b border-[#E4DBD0] transition-all duration-300 shrink-0 flex items-center justify-between px-6 md:px-10 ${
+        className={`sticky top-0 z-40 border-b border-[#E4DBD0] transition-all duration-300 shrink-0 flex flex-col justify-center ${
           isScrolled
-            ? 'h-14 md:h-16 bg-white/95 backdrop-blur-md shadow-xs'
-            : 'h-20 md:h-24 bg-[#FAF3EB]/95 backdrop-blur-md'
+            ? 'bg-white/95 backdrop-blur-md shadow-xs'
+            : 'bg-[#FAF3EB]/95 backdrop-blur-md'
         }`}
       >
-        {/* Left: Identity Lockup & Prominent Active Section Title */}
-        <div className="flex items-center space-x-3 md:space-x-5 overflow-hidden">
-          <Link
-            to="/"
-            className="flex items-center space-x-3 shrink-0 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] rounded-xl p-1"
-          >
-            {/* Animated Icon Container */}
-            <div
-              className={`rounded-xl bg-[#0F3D3A] text-white flex items-center justify-center shadow-xs group-hover:bg-[#7A1C24] transition-all duration-300 shrink-0 ${
-                isScrolled ? 'w-8 h-8 rounded-lg' : 'w-11 h-11 rounded-xl'
-              }`}
+        {/* Main Header Bar */}
+        <div
+          className={`w-full flex items-center justify-between px-6 md:px-10 transition-all duration-300 ${
+            isScrolled ? 'h-14 md:h-16' : 'h-20 md:h-24'
+          }`}
+        >
+          {/* Left: Identity Lockup & Prominent Active Section Title */}
+          <div className="flex items-center space-x-3 md:space-x-5 overflow-hidden">
+            <Link
+              to="/"
+              className="flex items-center space-x-3 shrink-0 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] rounded-xl p-1"
             >
-              <BookOpen className={`transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`} />
-            </div>
-
-            {/* Portfolio Title & Pre-Service Teacher Subtitle */}
-            <div className="text-left hidden sm:block">
-              <h1
-                className={`font-bold tracking-tight text-[#0F3D3A] leading-tight group-hover:text-[#7A1C24] transition-all duration-300 ${
-                  isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
+              {/* Animated Icon Container */}
+              <div
+                className={`rounded-xl bg-[#0F3D3A] text-white flex items-center justify-center shadow-xs group-hover:bg-[#7A1C24] transition-all duration-300 shrink-0 ${
+                  isScrolled ? 'w-8 h-8 rounded-lg' : 'w-11 h-11 rounded-xl'
                 }`}
               >
-                Field Study 2 · E-Portfolio
-              </h1>
-              {!isScrolled && (
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#7A1C24] mt-0.5 transition-all duration-300">
-                  Emmanuel P. Ferrer · PDMHS
-                </p>
-              )}
-            </div>
-          </Link>
+                <BookOpen className={`transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`} />
+              </div>
 
-          {/* Prominent Active Section Title Separated by Vertical Hairline Divider */}
-          {isSubpage && currentPath !== '/completeness' && currentSection && (
-            <div className="flex items-center border-l-2 border-[#E4DBD0] pl-4 md:pl-5 py-1 min-w-0 transition-all duration-300">
-              <div className="text-left truncate">
-                {!isScrolled && (
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#0F3D3A] block">
-                    Active Section
-                  </span>
-                )}
-                <h2
-                  className={`font-bold tracking-tight text-[#7A1C24] leading-tight truncate transition-all duration-300 ${
-                    isScrolled
-                      ? 'text-sm sm:text-base md:text-lg'
-                      : 'text-lg sm:text-xl md:text-2xl'
+              {/* Portfolio Title & Pre-Service Teacher Subtitle */}
+              <div className="text-left hidden sm:block">
+                <h1
+                  className={`font-bold tracking-tight text-[#0F3D3A] leading-tight group-hover:text-[#7A1C24] transition-all duration-300 ${
+                    isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
                   }`}
                 >
-                  {taskSheetSegment ? (
-                    <>
-                      <span>{currentSection.numeral}. {currentSection.title}</span>
-                      <span className="text-[#E4DBD0] mx-2">/</span>
-                      <span className="font-mono text-[#0F3D3A]">{taskSheetSegment}</span>
-                    </>
-                  ) : (
-                    `${currentSection.numeral}. ${currentSection.title}`
-                  )}
-                </h2>
+                  Field Study 2 · E-Portfolio
+                </h1>
+                {!isScrolled && (
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#7A1C24] mt-0.5 transition-all duration-300">
+                    Emmanuel P. Ferrer · PDMHS
+                  </p>
+                )}
               </div>
+            </Link>
+
+            {/* Prominent Active Section Title Separated by Vertical Hairline Divider */}
+            {isSubpage && currentPath !== '/completeness' && currentSection && (
+              <div className="flex items-center border-l-2 border-[#E4DBD0] pl-4 md:pl-5 py-1 min-w-0 transition-all duration-300">
+                <div className="text-left truncate">
+                  {!isScrolled && (
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#0F3D3A] block">
+                      Active Section
+                    </span>
+                  )}
+                  <h2
+                    className={`font-bold tracking-tight text-[#7A1C24] leading-tight truncate transition-all duration-300 ${
+                      isScrolled
+                        ? 'text-sm sm:text-base md:text-lg'
+                        : 'text-lg sm:text-xl md:text-2xl'
+                    }`}
+                  >
+                    {taskSheetSegment ? (
+                      <>
+                        <span>{currentSection.numeral}. {currentSection.title}</span>
+                        <span className="text-[#E4DBD0] mx-2">/</span>
+                        <span className="font-mono text-[#0F3D3A]">{taskSheetSegment}</span>
+                      </>
+                    ) : (
+                      `${currentSection.numeral}. ${currentSection.title}`
+                    )}
+                  </h2>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Right: Persistent Overview & Sections (I–X) Buttons Side-by-Side */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* 1. Always-Visible Overview Button */}
+            <Link
+              to="/"
+              className={`font-semibold border transition-all duration-300 flex items-center gap-2 shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
+                isScrolled ? 'px-3 py-1.5 rounded-lg text-xs' : 'px-4 py-2.5 rounded-xl text-sm'
+              } ${
+                !isSubpage
+                  ? 'bg-[#0F3D3A] text-white border-[#0F3D3A]'
+                  : 'bg-white text-[#0F3D3A] border-[#E4DBD0] hover:border-[#7A1C24] hover:text-[#7A1C24]'
+              }`}
+              title="Return to Portfolio Overview & Table of Contents"
+            >
+              <LayoutGrid className={isScrolled ? 'w-3.5 h-3.5' : 'w-4 h-4'} />
+              <span className="hidden sm:inline">Overview</span>
+            </Link>
+
+            {/* 2. Persistent Sections (I–X) Drawer Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Open Sections Directory"
+              className={`font-semibold bg-white text-[#1E1B18] border border-[#E4DBD0] hover:border-[#0F3D3A] hover:text-[#0F3D3A] transition-all duration-300 flex items-center gap-2 shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
+                isScrolled ? 'px-3 py-1.5 rounded-lg text-xs' : 'px-4 py-2.5 rounded-xl text-sm'
+              }`}
+            >
+              <Menu className={`text-[#7A1C24] ${isScrolled ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
+              <span>Sections (I–X)</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Persistent Section V Task Sheet Switcher (TS2–TS7) */}
+        {isCurriculumRoute && (
+          <div
+            className={`w-full border-t border-[#E4DBD0]/80 py-2 px-6 md:px-10 flex items-center justify-between gap-3 overflow-x-auto transition-colors shrink-0 ${
+              isScrolled ? 'bg-white/95' : 'bg-[#FAF3EB]/90'
+            }`}
+          >
+            <div className="flex items-center space-x-2 shrink-0">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F3D3A] shrink-0 hidden sm:inline">
+                Jump to Task Sheet:
+              </span>
+              <span className="text-[11px] font-mono font-bold text-[#7A1C24] bg-white px-2 py-0.5 rounded border border-[#E4DBD0] shrink-0">
+                Part V
+              </span>
             </div>
-          )}
-        </div>
-
-        {/* Right: Persistent Overview & Sections (I–X) Buttons Side-by-Side */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          {/* 1. Always-Visible Overview Button */}
-          <Link
-            to="/"
-            className={`font-semibold border transition-all duration-300 flex items-center gap-2 shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
-              isScrolled ? 'px-3 py-1.5 rounded-lg text-xs' : 'px-4 py-2.5 rounded-xl text-sm'
-            } ${
-              !isSubpage
-                ? 'bg-[#0F3D3A] text-white border-[#0F3D3A]'
-                : 'bg-white text-[#0F3D3A] border-[#E4DBD0] hover:border-[#7A1C24] hover:text-[#7A1C24]'
-            }`}
-            title="Return to Portfolio Overview & Table of Contents"
-          >
-            <LayoutGrid className={isScrolled ? 'w-3.5 h-3.5' : 'w-4 h-4'} />
-            <span className="hidden sm:inline">Overview</span>
-          </Link>
-
-          {/* 2. Persistent Sections (I–X) Drawer Trigger Button */}
-          <button
-            type="button"
-            onClick={() => setDrawerOpen(true)}
-            aria-label="Open Sections Directory"
-            className={`font-semibold bg-white text-[#1E1B18] border border-[#E4DBD0] hover:border-[#0F3D3A] hover:text-[#0F3D3A] transition-all duration-300 flex items-center gap-2 shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
-              isScrolled ? 'px-3 py-1.5 rounded-lg text-xs' : 'px-4 py-2.5 rounded-xl text-sm'
-            }`}
-          >
-            <Menu className={`text-[#7A1C24] ${isScrolled ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
-            <span>Sections (I–X)</span>
-          </button>
-        </div>
+            <div className="flex items-center gap-1.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {CURRICULUM_TASK_SHEETS.map((ts) => {
+                const isTsActive = activeCurriculumTsId === ts.id;
+                return (
+                  <Link
+                    key={ts.id}
+                    to={ts.path}
+                    className={`font-mono text-xs shrink-0 transition-all ${
+                      isTsActive
+                        ? 'bg-[#7A1C24] text-white border border-[#7A1C24] font-bold px-3 py-1 rounded-lg shadow-2xs'
+                        : 'bg-white text-[#0F3D3A] border border-[#E4DBD0] hover:border-[#7A1C24] hover:text-[#7A1C24] font-semibold px-3 py-1 rounded-lg'
+                    }`}
+                  >
+                    <span>{ts.num}</span>
+                    <span className="font-sans font-normal ml-1 hidden md:inline text-[11px]">
+                      · {ts.shortTitle}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Enlarged Blurred Left & Right Adjacent Section Peeks (Desktop Viewports on Subpages) */}

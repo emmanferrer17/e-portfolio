@@ -5,10 +5,19 @@ import DocumentViewer from './DocumentViewer';
 import SmartText from './SmartText';
 import assetPath from '../utils/assetPath';
 
+const TAB_SHORT_TITLES = {
+  ts2: 'DLL',
+  ts3: 'Competencies',
+  ts4: 'Management',
+  ts5: 'Lesson Log',
+  ts6: 'Lesson Plans',
+  ts7: 'Assessment',
+};
+
 /**
  * TaskSheetSection
  * Architectural Studio Folder-Tab Layout for Task Sheets TS2 to TS7.
- * - Horizontal Folder Tabs (TS2–TS7)
+ * - Responsive Non-Scrolling Tab Grid (TS2–TS7)
  * - Two-column Summary Card (Opener + Reflection on Left, CT Feedback on Right)
  * - Full-width Document Stage (h-[78vh] DocumentViewer)
  * - TS6 Instructional Materials Gallery (Fish-Hook & Peso-Bills)
@@ -18,23 +27,24 @@ export default function TaskSheetSection({ taskSheet, journeyNote, allTaskSheets
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6 font-sans">
-      {/* Folder Tabs Navigation Bar */}
-      <div className="flex items-end gap-1.5 border-b border-[#E4DBD0] pt-2 overflow-x-auto select-none">
+      {/* Folder Tabs Navigation Bar (Responsive Grid, Zero Scrollbars) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-2 select-none overflow-visible">
         {allTaskSheets.map((ts) => {
           const isActive = ts.id.toLowerCase() === taskSheet.id.toLowerCase();
+          const shortTitle = TAB_SHORT_TITLES[ts.id.toLowerCase()] || ts.title.split(' ')[0];
           return (
             <NavLink
               key={ts.id}
               to={`/curriculum/${ts.id}`}
-              className={`px-4 py-2.5 rounded-t-xl text-xs font-mono font-bold transition-all shrink-0 flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
+              className={`px-3 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center justify-center space-x-1.5 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
                 isActive
-                  ? 'bg-white border-t-2 border-t-[#7A1C24] border-x border-[#E4DBD0] text-[#7A1C24] -mb-[1px] z-10 shadow-xs'
-                  : 'bg-[#FAF3EB] text-[#0F3D3A] border-t border-x border-transparent hover:border-[#E4DBD0] hover:bg-white/80'
+                  ? 'bg-white border-2 border-[#7A1C24] text-[#7A1C24] font-bold shadow-xs'
+                  : 'bg-white/80 border border-[#E4DBD0] text-[#0F3D3A] hover:bg-white hover:border-[#0F3D3A] hover:text-[#0F3D3A] font-medium'
               }`}
             >
-              <span className="font-bold">{ts.num}</span>
-              <span className="text-[11px] font-sans font-medium text-[#1E1B18]/70 hidden sm:inline truncate max-w-[130px]">
-                {ts.title}
+              <span className="font-bold text-xs">{ts.num}</span>
+              <span className="text-[11px] font-sans font-medium text-[#1E1B18]/80 truncate hidden sm:inline">
+                {shortTitle}
               </span>
             </NavLink>
           );
@@ -42,7 +52,7 @@ export default function TaskSheetSection({ taskSheet, journeyNote, allTaskSheets
       </div>
 
       {/* Two-Column Summary Card (Left: Opener & Reflection; Right: Cooperating Teacher Feedback) */}
-      <section className="bg-white border border-[#E4DBD0] rounded-b-xl rounded-tr-xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 shadow-xs">
+      <section className="bg-white border border-[#E4DBD0] rounded-xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 shadow-xs">
         {/* Left Column: Context Opener & Pre-Service Teacher Reflection */}
         <div className="space-y-5">
           {/* Opener */}
