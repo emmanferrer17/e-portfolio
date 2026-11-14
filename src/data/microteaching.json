@@ -1,0 +1,51 @@
+{
+  "checklistItem": "VII",
+  "title": "Microteaching (TS12)",
+  "journeyNote": "Teaching a class is one thing. Teaching while being evaluated is another.",
+  "topic": "Restaurant Serving Sequence: Serving Rules",
+  "gradeLevel": "Grade 10",
+  "date": "October 8, 2026",
+  "score": "7.622",
+  "maxScore": "10",
+  "scoreRating": "Highly Satisfactory",
+  "fullScoreText": "Score: 7.622 / 10 (Highly Satisfactory)",
+  "keep": {
+    "title": "What I'd keep",
+    "text": "My original fish-hook game. Learners explained the serving rules themselves, so even in a short demo the lesson stayed student-centered. I also finished the discussion."
+  },
+  "redo": {
+    "title": "What I'd redo",
+    "text": "Time. I ran out of it and never reached the assessment. Next time I will rehearse with a timer and fit the activities into 45 minutes."
+  },
+  "evaluatorFeedback": "Properly implemented the use of ICT (fish hook game); maintain students interaction; stated clear objectives; well prepared instructional materials; DLL is ready; Loud and clear voice; polite, confident, and smiling; connected the lesson to science and health; 'congratulations'.",
+  "deliverables": [
+    {
+      "id": "ts12-full",
+      "title": "Full TS12 Compilation (Rubrics, DLP & Slides)",
+      "description": "Complete compilation including official evaluation rubric scoring, detailed procedural lesson plan, and slide deck visuals.",
+      "type": "pdf",
+      "url": "/pdfs/ts12-full.pdf"
+    },
+    {
+      "id": "ts12-dlp",
+      "title": "Detailed Lesson Plan (DLP Only)",
+      "description": "Full procedural lesson plan outlining Restaurant Serving Sequence objectives, instructional sequence, and activities.",
+      "type": "pdf",
+      "url": "/pdfs/ts12-dlp.pdf"
+    },
+    {
+      "id": "ts12-slides",
+      "title": "Presentation Slides",
+      "description": "Visual presentation aids and slides utilized during the evaluated classroom demonstration.",
+      "type": "pdf",
+      "url": "/pdfs/ts12-slides.pdf"
+    },
+    {
+      "id": "fish-hook-game",
+      "title": "Fish-Hook Recitation Game Screenshot",
+      "description": "Custom interactive software application created to randomize and engage learners during recitation.",
+      "type": "image",
+      "url": "/assets/fish-hook.jpg"
+    }
+  ]
+}

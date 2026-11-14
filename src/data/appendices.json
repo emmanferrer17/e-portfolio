@@ -1,0 +1,16 @@
+{
+  "checklistItem": "X",
+  "title": "Appendices",
+  "journeyNote": "Sometimes the people around me saw my growth more clearly than I did.",
+  "weeklyMentoringForms": {
+    "title": "Compiled Weekly Mentoring Forms (WMF)",
+    "description": "Weekly monitoring, instructional notes, and evaluation forms compiled throughout the practicum period.",
+    "pdfUrl": "/pdfs/weekly-mentoring-forms.pdf"
+  },
+  "dailyTimeRecord": {
+    "title": "Daily Time Record (DTR)",
+    "totalHoursNotice": "Total hours rendered: 120",
+    "description": "Verified official Daily Time Record documenting completed practicum hours, signed by Cooperating Teacher Ma'am Flair Macalanda.",
+    "pdfUrl": "/pdfs/dtr.pdf"
+  }
+}

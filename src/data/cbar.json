@@ -1,0 +1,42 @@
+{
+  "checklistItem": "VIII",
+  "title": "Classroom-Based Action Research Proposal (TS1, TS8)",
+  "journeyNote": "This research began with something I noticed in the classroom, not something I read in a book.",
+  "groupmates": ["Brix", "Aliah"],
+  "researchTitle": "The Effectiveness of a \"Praise and Token\" System in Reducing Minor Disruptive Behaviors Among Grade 10 Students in President Diosdado Macapagal High School",
+  "panelScores": "Panel 1: 95/100. Panel 2: 71/100.",
+  "howOurResearchBegan": {
+    "heading": "How our research began.",
+    "text": "Students demonstrated a short attention span, lack of focus, and there were no definite consequences for disruptive behaviors. Together with my groupmates Brix and Aliah, I turned that observation into a research question."
+  },
+  "theStudyInPlainLanguage": {
+    "heading": "The study in plain language.",
+    "text": "We wanted to find out how effectively minor disruptive behaviors could be reduced by implementing a Token Economy and Behavior-Specific Praise system among Grade 10 students."
+  },
+  "deliverables": [
+    {
+      "id": "ts1-data-bank",
+      "title": "TS1: Action Research Data Bank",
+      "description": "Initial literature review scan, classroom behavioral identification matrix, and intervention data repository.",
+      "pdfUrl": "/pdfs/ts1-data-bank.pdf"
+    },
+    {
+      "id": "cbar-rubric-manuscript",
+      "title": "Panel Rubric Score & Manuscript Compilation",
+      "description": "Official panel proposal defense evaluation rubric scoring, panel critique feedback, and complete compiled manuscript.",
+      "pdfUrl": "/pdfs/cbar-rubric-manuscript.pdf"
+    },
+    {
+      "id": "ts8-manuscript",
+      "title": "CBAR Manuscript Only",
+      "description": "Full formal action research proposal across Chapters 1 to 3 detailing behavioral methodologies and token economy systems.",
+      "pdfUrl": "/pdfs/ts8-cbar-manuscript.pdf"
+    }
+  ],
+  "carouselImages": [
+    "/assets/cbar-doc-1.jpg",
+    "/assets/cbar-doc-2.jpg",
+    "/assets/cbar-doc-3.jpg",
+    "/assets/cbar-doc-4.jpg"
+  ]
+}

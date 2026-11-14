@@ -1,0 +1,92 @@
+{
+  "checklistItem": "V",
+  "title": "Curriculum and Planning (TS2-TS7)",
+  "journeyNote": "This is where observing turned into doing. What began as paperwork became lessons I delivered to two sections.",
+  "overview": "Where planning became practice. Compilation of verified daily lesson logs, competency matrices, classroom management plans, instructional materials, and assessment instruments delivered across two high school sections.",
+  "taskSheets": [
+    {
+      "id": "ts2",
+      "num": "TS2",
+      "title": "Annotated DLL",
+      "fullTitle": "Task Sheet 2: Annotated Daily Lesson Log",
+      "checklistItem": "V",
+      "opener": "Creating a Daily Lesson Log requires precise alignment with the MATATAG curriculum and the Budget of Work (BOW).",
+      "pdfUrl": "/pdfs/ts2-annotated-dll.pdf",
+      "reflection": "Annotating showed me that alignment is everything: topic, objectives, discussion, and assessment must all point to the same place. It wasn't confusing, but it was demanding to plan, because I can't write an objective I can't actually teach and assess. Now, I write the assessment in my head before I write the objective.",
+      "ctFeedback": "DLL has complete parts, clear reference to MATATAG Curriculum and complies with AI Declaration policy. Content and performance standards exactly match the BOW."
+    },
+    {
+      "id": "ts3",
+      "num": "TS3",
+      "title": "Competencies Alignment",
+      "fullTitle": "Task Sheet 3: Competencies Alignment",
+      "checklistItem": "V",
+      "opener": "Mapping out competencies ensures every objective directly supports the prescribed curriculum guide.",
+      "pdfUrl": "/pdfs/ts3-competencies-alignment.pdf",
+      "reflection": "I began by studying the lesson: the exemplar, the Budget of Work, the Curriculum Guide, and outside research on the content. I drafted my CAP objectives, built a student-centered activity to meet them, and when something did not line up, I adjusted the objectives, the activity, or the assessment until all three landed at the same place.",
+      "ctFeedback": "The output shows that most objectives are accurately aligned with the BOW/CG/MELCS competencies. The competency and objectives are clear."
+    },
+    {
+      "id": "ts4",
+      "num": "TS4",
+      "title": "Classroom Management Plan",
+      "fullTitle": "Task Sheet 4: Classroom Management Plan",
+      "checklistItem": "V",
+      "opener": "Establishing a safe and organized classroom environment relies on consistent routines and clear expectations.",
+      "pdfUrl": "/pdfs/ts4-classroom-management.pdf",
+      "reflection": "What I noticed first in my CT's class was her loud, well-modulated voice, which I want to adopt. I also learned from her slides that clear visuals matter, since text that is cut off or overlapping can distract an audience. For positive behavior, I implemented a Token Economy paired with Behavior-Specific Praise, where tokens could be redeemed for privileges. For negative behavior, I applied logical, consistent, and non-punitive consequences like temporary loss of privileges.",
+      "ctFeedback": "Rules established are clear, clearly explains specific and consistent routines, routines are realistic."
+    },
+    {
+      "id": "ts5",
+      "num": "TS5",
+      "title": "Daily Lesson Log",
+      "fullTitle": "Task Sheet 5: Daily Lesson Log",
+      "checklistItem": "V",
+      "opener": "Structuring the week's lessons breaks down complex topics into digestible daily competencies.",
+      "pdfUrl": "/pdfs/ts5-dll.pdf",
+      "reflection": "Looking at my logs, I noticed the weekly rhythm: Day 1 introduces the topic, Days 2 to 4 deepen it with activities, and the last day generalizes the lesson and adds one more activity so learners retain it.",
+      "ctFeedback": "Intentions are clearly stated with KSA per session. Learning competencies show what learners will work on, relevant to real life."
+    },
+    {
+      "id": "ts6",
+      "num": "TS6",
+      "title": "Lesson Plans and Instructional Materials",
+      "fullTitle": "Task Sheet 6: Lesson Plans and Instructional Materials",
+      "checklistItem": "V",
+      "opener": "Detailed lesson plans serve as the blueprint for engaging discussions and effective instructional materials.",
+      "pdfUrl": "/pdfs/ts6-dlp.pdf",
+      "reflection": "I am proudest of two things I built. The first is a fish-hook web app where learners appear as swimming fish and I \"hook\" one at random to recite. The second is a peso-bill reward system with bills of 10, 20, 50, 100, 500, and 1,000, each in three designs with an animal and a quote. Learners earned bills based on the quality of their answers. This is where my programming background and my teaching met.",
+      "ctFeedback": "The daily lesson log shows clear and complete sequence of learning objective.",
+      "instructionalMaterials": {
+        "heading": "Custom Instructional Materials & Gamification Gallery",
+        "description": "Interactive software and gamified incentives designed and coded to boost recitation engagement.",
+        "galleries": [
+          {
+            "id": "fish-hook",
+            "title": "Fish-Hook Recitation Web Application",
+            "description": "Interactive gamified web app where students swim as fish and are hooked randomly for recitation questions.",
+            "placeholder": "/assets/fish-hook.jpg"
+          },
+          {
+            "id": "peso-bills",
+            "title": "Custom Peso-Bill Gamified Reward System",
+            "description": "Custom printed reward bills (10, 20, 50, 100, 500, 1,000) in 3 designs featuring motivational animals and quotes.",
+            "placeholder": "/assets/peso-bills.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ts7",
+      "num": "TS7",
+      "title": "Assessment Tools and Evaluation",
+      "fullTitle": "Task Sheet 7: Assessment Tools and Evaluation",
+      "checklistItem": "V",
+      "opener": "Building assessments requires testing practical relevance and higher-order thinking, not just rote memory.",
+      "pdfUrl": "/pdfs/ts7-tos.pdf",
+      "reflection": "Fairness and accuracy matter because assessment represents the quality of a learner's work. Learners come to school to learn, and if the assessment is poorly built, that goal is not met. I built a multiple-choice contextual exam using real-world food service scenarios. I learned that clear formatting and shading indicators significantly help students understand what is expected.",
+      "ctFeedback": "Assess Higher Order Thinking Skills, contextual and practical relevance (uses real world industry and scenarios), uses multiple choice options and shading indicators... TOS contents are aligned with the Test."
+    }
+  ]
+}

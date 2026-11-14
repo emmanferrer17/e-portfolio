@@ -1,0 +1,71 @@
+{
+  "title": "Field Study E-Portfolio",
+  "detailsBlock": {
+    "studentName": "Emmanuel P. Ferrer",
+    "program": "Bachelor of Technical-Vocational Teacher Education major in ICT Computer Programming, Technological University of the Philippines - Taguig, 4th Year",
+    "deploymentSchool": "President Diosdado Macapagal High School",
+    "schoolYearAndTerm": "School Year 2026-2027, 2nd Term",
+    "courseCode": "Field Study 2 (FS2-T)",
+    "subjectTeacherName": "Ma'am Anna Tanto",
+    "fullText": "Emmanuel P. Ferrer. Bachelor of Technical-Vocational Teacher Education major in ICT Computer Programming, Technological University of the Philippines - Taguig, 4th Year. Deployed at President Diosdado Macapagal High School. School Year 2026-2027, 2nd Term. Field Study 2 (FS2-T). Ma'am Anna Tanto."
+  },
+  "welcome": "Hello, and welcome to my Field Study e-portfolio. Between September 23 and November 5, 2026, I spent every Wednesday and Thursday at President Diosdado Macapagal High School. It started as observation and became much more: I planned lessons, built materials, and taught real classes. This portfolio is not just a folder of documents. It is the story of how I changed, and I hope you enjoy reading it as much as I enjoyed living it.",
+  "tagline": "Learning to teach by teaching to learn.",
+  "schoolPhoto": "/assets/school-photo.jpg",
+  "contentsCards": [
+    {
+      "numeral": "II",
+      "route": "/introduction",
+      "title": "Introduction",
+      "oneLinePreview": "How my first day and last day compare"
+    },
+    {
+      "numeral": "III",
+      "route": "/about",
+      "title": "About the Teacher (CV)",
+      "oneLinePreview": "Who I am before and beyond the classroom"
+    },
+    {
+      "numeral": "IV",
+      "route": "/learning-environment",
+      "title": "Learning Environment",
+      "oneLinePreview": "School vision, mission, history, and campus overview"
+    },
+    {
+      "numeral": "V",
+      "route": "/curriculum",
+      "title": "Curriculum and Planning (TS2-TS7)",
+      "oneLinePreview": "Where planning became practice"
+    },
+    {
+      "numeral": "VI",
+      "route": "/professional-development",
+      "title": "Professional Development (TS9-TS10)",
+      "oneLinePreview": "Learning outside my own class"
+    },
+    {
+      "numeral": "VII",
+      "route": "/microteaching",
+      "title": "Microteaching (TS12)",
+      "oneLinePreview": "Teaching while being evaluated"
+    },
+    {
+      "numeral": "VIII",
+      "route": "/cbar",
+      "title": "CBAR Proposal (TS1, TS8)",
+      "oneLinePreview": "A research question that started in the classroom"
+    },
+    {
+      "numeral": "IX",
+      "route": "/philosophy",
+      "title": "Teaching Philosophy (TS11)",
+      "oneLinePreview": "What I believe now"
+    },
+    {
+      "numeral": "X",
+      "route": "/appendices",
+      "title": "Appendices",
+      "oneLinePreview": "What others saw in my growth"
+    }
+  ]
+}

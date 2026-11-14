@@ -1,0 +1,83 @@
+{
+  "checklistItem": "VI",
+  "title": "Professional Development Certificates (TS9-TS10)",
+  "journeyNote": "Growing as a teacher did not only happen in the classroom. These are the times I stepped outside it to learn.",
+  "overview": "Professional development milestones, external pedagogical webinars, and direct classroom instructional assistance.",
+  "ts9": {
+    "num": "TS9",
+    "title": "Learnings from the Professional Webinar",
+    "pdfUrl": "/pdfs/ts9-professional-development.pdf",
+    "webinarTitle": "How Language Assessment Works",
+    "speaker": "Andy",
+    "organizer": "Mike Cabigon (Head of Market, English and Exams)",
+    "date": "September 22, 2026",
+    "quote": "Assessment is not just about measuring learning, but empowering it.",
+    "reaction": "This reminded me that assessment is not a last step but part of the lesson from the start.",
+    "topLearnings": [
+      "Good assessment measures what you actually taught, which is alignment, and it links directly to my TS2 and TS3.",
+      "Feedback is part of assessment, because it tells learners what to improve next.",
+      "Fair assessment uses clear criteria, so every learner is judged by the same standard."
+    ],
+    "applicationInClass": "Learning 1. I already learned how much alignment matters, and the webinar gave me the language to explain why.",
+    "webinarImages": [
+      "/assets/webinar/webinar-1.jpg",
+      "/assets/webinar/webinar-2.jpg",
+      "/assets/webinar/webinar-3.jpg",
+      "/assets/webinar/webinar-4.jpg",
+      "/assets/webinar/webinar-5.jpg"
+    ]
+  },
+  "ts10": {
+    "num": "TS10",
+    "title": "School Activity Participation",
+    "pdfUrl": "/pdfs/ts10-school-activity.pdf",
+    "heading": "What I did to support my Cooperating Teacher:",
+    "role": "Pre-Service Teaching Assistant & Observer",
+    "period": "September 23 to November 5, 2026 (Wednesdays & Thursdays)",
+    "activities": [
+      "Checked papers, recorded scores, and tracked attendance.",
+      "Taught 2 sections every Wednesday and Thursday: wrote the lesson plans, crafted the instructional materials, and facilitated quizzes and activities.",
+      "Served as observer for 3 other sections."
+    ],
+    "mentoringNote": "My CT's comments are in my Weekly Mentoring Forms (Appendices)."
+  },
+  "visualCertificates": [
+    {
+      "id": "canva-deped",
+      "title": "Canva for Education Workshop",
+      "organization": "Canva DepEd",
+      "category": "Educational Technology & Graphic Design",
+      "imageSrc": "/assets/certificates/canva.jpg"
+    },
+    {
+      "id": "british-council",
+      "title": "Language Assessment in the Classroom Webinar",
+      "organization": "British Council Philippines",
+      "category": "Language Assessment & Evaluation",
+      "imageSrc": "/assets/certificates/british-council.jpg"
+    },
+    {
+      "id": "ted-ed",
+      "title": "TED-Ed Idea Workshop",
+      "organization": "TED-Ed",
+      "category": "Pedagogy & Creative Instruction",
+      "imageSrc": "/assets/certificates/ted-ed.jpg"
+    }
+  ],
+  "attendanceCertificates": [
+    {
+      "id": "mental-health",
+      "title": "Mental Health and Resilience in Educational Settings",
+      "organization": "Mental Health Advocacy Group",
+      "category": "Learner & Educator Well-Being",
+      "type": "Attended Webinar Series"
+    },
+    {
+      "id": "church-multimedia",
+      "title": "Digital Media & Audio-Visual Workshop",
+      "organization": "Church Multimedia Ministry",
+      "category": "Multimedia Production & A/V Communications",
+      "type": "Attended Training Session"
+    }
+  ]
+}

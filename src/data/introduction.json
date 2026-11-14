@@ -1,0 +1,32 @@
+{
+  "checklistItem": "II",
+  "title": "Introduction",
+  "journeyNote": null,
+  "deploymentProfile": {
+    "name": "Emmanuel P. Ferrer",
+    "program": "Bachelor of Technical-Vocational Teacher Education (BTVTEd), Major in ICT Computer Programming",
+    "partnerSchool": "President Diosdado Macapagal High School",
+    "subjectAndGrade": "Grade 10 TLE / Family and Consumer Science – Food Service",
+    "cooperatingTeacher": "Ma'am Flair Macalanda",
+    "classes": [
+      { "name": "Lily", "role": "Main Handled" },
+      { "name": "Orchid", "role": "Main Handled" },
+      { "name": "Azalea", "role": "Observed" },
+      { "name": "Lotus", "role": "Observed" },
+      { "name": "Zinnia", "role": "Open High School Program – Observed" }
+    ],
+    "schedule": "Wednesdays & Thursdays, 5:30 AM – 1:30 PM",
+    "photo": "/assets/student-photo.png"
+  },
+  "firstDay": {
+    "heading": "My first day.",
+    "text": "Teaching was never on my list when I entered college. I chose my program because it had Computer Programming in it, and that was close enough to computers. On my first week, I was introduced in front of five classes. I had no prepared script, so I simply said whatever came to mind: my name, my university and program, why I was there, and what they could expect from me. I expected to observe and help with paperwork. I did not expect to be treated like a real teacher."
+  },
+  "lastDay": {
+    "heading": "My last day.",
+    "text": "I did not properly say goodbye to my students. I did say goodbye to my CT, Ma'am Flair, and it went well. She explained that the other student teacher will handle my sections. Days later, I formally sent a message to my section's group chat to inform them I would not be around to teach, but that I will be back around the week of November 23."
+  },
+  "closing": {
+    "text": "Somewhere between those two days, I started to understand why people choose to teach. For me, the reason is this: when you teach, you learn. And that means you never stop learning."
+  }
+}

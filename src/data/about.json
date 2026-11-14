@@ -1,0 +1,43 @@
+{
+  "checklistItem": "III",
+  "title": "About the Teacher (CV)",
+  "journeyNote": "Before I was a student teacher, I was a student who simply loved computers. This page shows where I started.",
+  "cv": {
+    "name": "Emmanuel P. Ferrer",
+    "contact": "emmanferrer753@gmail.com",
+    "cvPdfUrl": "/pdfs/cv.pdf",
+    "education": "Bachelor of Technical-Vocational Teacher Education, major in ICT Computer Programming, Technological University of the Philippines - Taguig, 4th Year. Senior High School: Parañaque National High School - Main, with High Honors 2021-2023. High School: Parañaque National High School - Main, consistent honor student 2017-2021. Elementary: Parañaque Elementary School Central 2017.",
+    "seminarsAndTrainings": "Canva DepEd webinar; British Council Philippines webinar on language assessment; TED-Ed Idea Workshop; mental health webinars; multimedia trainings and workshops organized by my church.",
+    "leadership": "Led student groups in research, business plans, and business proposals in high school and senior high school. Director and scriptwriter in 2nd year college."
+  },
+  "profileCard": {
+    "strengths": "Inspiring. Adaptable. Creative.",
+    "teachingSkills": [
+      "Curriculum and lesson planning",
+      "Instructional delivery and differentiated learning",
+      "Assessment and feedback",
+      "Research and documentation",
+      "Understands instructions quickly"
+    ],
+    "technicalSkills": [
+      "Canva",
+      "Microsoft applications",
+      "ICT integration through programming (including a web app for recitation)",
+      "Database design",
+      "Backend development (PHP, Python, Java)",
+      "Frontend development (HTML, CSS, JS)",
+      "UI/UX design (Figma)",
+      "Mobile app development (Flutter/Dart)",
+      "Version control",
+      "Linux environment management"
+    ],
+    "creativeSkills": [
+      "Poster design",
+      "Video editing",
+      "Creative writing",
+      "Publication materials",
+      "Urban sketching",
+      "Analyzing music lyrics"
+    ]
+  }
+}

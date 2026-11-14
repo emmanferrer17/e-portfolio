@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #FAF3EB;
+  }
+
+  body {
+    @apply bg-[#FAF3EB] text-[#1E1B18] antialiased;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    color: #0F3D3A;
+  }
+
+  p {
+    line-height: 1.68;
+    color: #1E1B18;
+  }
+
+  /* Universal accessible keyboard focus ring in Dark Teal (#0F3D3A) */
+  *:focus-visible {
+    outline: 2px solid #0F3D3A !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Custom subtle scrollbars for independent reading panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E4DBD0;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 61, 58, 0.4);
+}

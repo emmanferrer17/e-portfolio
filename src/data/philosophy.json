@@ -1,0 +1,24 @@
+{
+  "checklistItem": "IX",
+  "title": "Teaching Philosophy (TS11)",
+  "journeyNote": "After all of this, here is what I believe.",
+  "manifesto": [
+    "I did not choose teaching. When I entered college, it was not on my list. I chose my program because it had Computer Programming in it. But somewhere between planning lessons, building a game for recitation, and standing in front of five classes with no script, I began to understand why others do choose it. For me, the reason is simple: when you teach, you learn.",
+    "I believe learners deserve lessons that are aligned from the objective to the assessment. A lesson that promises one thing and tests another is unfair to them. I believe learning should be active, so I try to put learners at the center, whether through a game, a discussion, or a reward they can earn through the quality of their answers. And I believe technology is most useful when it serves the lesson. I use my programming skills to make my classroom more engaging, not to impress.",
+    "Field Study also taught me that I am still growing. I wanted to be a better version of myself, and I learned that this means being willing to fall short. When I disappointed my Cooperating Teacher in my last week, it hurt, but it taught me more than any success. I want to be a teacher who stays curious, adapts, and keeps learning from the learners in front of me."
+  ],
+  "corePrinciples": [
+    {
+      "heading": "Reciprocal Learning",
+      "quote": "When you teach, you learn. And that means you never stop learning."
+    },
+    {
+      "heading": "Constructive Alignment",
+      "quote": "Learners deserve lessons that are aligned from the objective to the assessment."
+    },
+    {
+      "heading": "Purposeful Technology",
+      "quote": "Technology is most useful when it serves the lesson... to make my classroom more engaging, not to impress."
+    }
+  ]
+}
