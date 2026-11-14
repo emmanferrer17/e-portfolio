@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen, Menu, X, ArrowUpRight, Home, LayoutGrid, ArrowUp } from 'lucide-react';
 import { VISIBLE_SECTIONS, getAdjacentSections } from './navigation';
@@ -16,6 +16,7 @@ const CURRICULUM_TASK_SHEETS = [
 export default function SidebarLayout() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const prevPathRef = useRef(location.pathname);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,10 +67,21 @@ export default function SidebarLayout() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Close drawer when path changes
+  // Close drawer when path changes, and scroll to top unless navigating between curriculum task sheets
   useEffect(() => {
     setDrawerOpen(false);
-    window.scrollTo(0, 0);
+
+    const wasInCurriculum = prevPathRef.current.startsWith('/curriculum');
+    const isInCurriculum = location.pathname.startsWith('/curriculum');
+
+    if (wasInCurriculum && isInCurriculum) {
+      // Intra-curriculum navigation (e.g. TS2 to TS3): preserve vertical scroll position
+    } else {
+      // Inter-section transition: scroll cleanly to top
+      window.scrollTo(0, 0);
+    }
+
+    prevPathRef.current = location.pathname;
   }, [location.pathname]);
 
   // Lock body scroll when drawer is open
@@ -228,6 +240,7 @@ export default function SidebarLayout() {
                   <Link
                     key={ts.id}
                     to={ts.path}
+                    preventScrollReset
                     className={`font-mono text-xs shrink-0 transition-all ${
                       isTsActive
                         ? 'bg-[#7A1C24] text-white border border-[#7A1C24] font-bold px-3 py-1 rounded-lg shadow-2xs'

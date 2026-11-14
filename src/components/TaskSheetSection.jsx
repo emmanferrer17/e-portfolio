@@ -36,6 +36,7 @@ export default function TaskSheetSection({ taskSheet, journeyNote, allTaskSheets
             <NavLink
               key={ts.id}
               to={`/curriculum/${ts.id}`}
+              preventScrollReset
               className={`px-3 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center justify-center space-x-1.5 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F3D3A] ${
                 isActive
                   ? 'bg-white border-2 border-[#7A1C24] text-[#7A1C24] font-bold shadow-xs'
@@ -119,12 +120,12 @@ export default function TaskSheetSection({ taskSheet, journeyNote, allTaskSheets
         </div>
 
         {/* Viewer Viewport */}
-        <div className="h-[78vh] min-h-[620px] w-full bg-white">
+        <div className="h-[78vh] min-h-[78vh] w-full bg-white">
           <DocumentViewer
             url={taskSheet.pdfUrl}
             title={`${taskSheet.num} - ${taskSheet.title}`}
             height="100%"
-            className="border-0 rounded-none h-full w-full"
+            className="border-0 rounded-none h-full w-full min-h-[78vh]"
           />
         </div>
       </section>

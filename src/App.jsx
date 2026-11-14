@@ -34,6 +34,7 @@ export default function App() {
           {/* Section V: Curriculum and Planning (TS2 to TS7) */}
           <Route path="curriculum" element={<Curriculum />} />
           <Route path="curriculum/:tsId" element={<Curriculum />} />
+          <Route path="curriculum/:taskSheetId" element={<Curriculum />} />
 
           {/* Section VI: Professional Development */}
           <Route path="professional-development" element={<ProfessionalDevelopment />} />

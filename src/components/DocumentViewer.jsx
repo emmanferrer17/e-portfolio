@@ -114,7 +114,7 @@ export default function DocumentViewer({
   if (fileStatus === 'checking') {
     return (
       <div
-        className={`relative w-full h-full min-h-[320px] bg-white border border-[#E4DBD0] rounded-xl flex flex-col items-center justify-center p-8 text-center font-sans ${className}`}
+        className={`relative w-full h-full min-h-[78vh] bg-white border border-[#E4DBD0] rounded-xl flex flex-col items-center justify-center p-8 text-center font-sans ${className}`}
         style={height !== '100%' ? { height } : undefined}
       >
         <div className="w-10 h-10 rounded-full border-2 border-[#E4DBD0] border-t-[#7A1C24] animate-spin mb-3" />
@@ -128,7 +128,7 @@ export default function DocumentViewer({
   if (fileStatus === 'missing') {
     return (
       <div
-        className={`relative w-full h-full min-h-[320px] bg-[#FAF3EB] border-2 border-dashed border-[#E4DBD0] rounded-xl flex flex-col items-center justify-center p-8 text-center font-sans shadow-xs ${className}`}
+        className={`relative w-full h-full min-h-[78vh] bg-[#FAF3EB] border-2 border-dashed border-[#E4DBD0] rounded-xl flex flex-col items-center justify-center p-8 text-center font-sans shadow-xs ${className}`}
         style={height !== '100%' ? { height } : undefined}
       >
         <div className="w-14 h-14 rounded-2xl bg-white border border-[#E4DBD0] flex items-center justify-center text-[#7A1C24] mb-4 shadow-xs">
@@ -171,7 +171,7 @@ export default function DocumentViewer({
   // 3. Status: Ready (render actual inline PDF viewer)
   return (
     <div
-      className={`relative w-full h-full min-h-[400px] overflow-hidden bg-white rounded-xl border border-[#E4DBD0] flex flex-col font-sans ${className}`}
+      className={`relative w-full h-full min-h-[78vh] overflow-hidden bg-white rounded-xl border border-[#E4DBD0] flex flex-col font-sans ${className}`}
       style={height !== '100%' ? { height } : undefined}
     >
       {/* Top micro-bar with title and direct link */}

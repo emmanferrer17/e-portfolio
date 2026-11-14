@@ -5,12 +5,13 @@ import SectionHeader from '../components/SectionHeader';
 import TaskSheetSection from '../components/TaskSheetSection';
 
 export default function Curriculum() {
-  const { tsId } = useParams();
+  const { tsId, taskSheetId } = useParams();
+  const currentTsId = taskSheetId || tsId;
   const { checklistItem, title, journeyNote, overview, taskSheets } = curriculumData;
 
   // Find requested task sheet or default to TS2
   const activeTaskSheet =
-    (tsId ? taskSheets.find((ts) => ts.id.toLowerCase() === tsId.toLowerCase()) : null) ||
+    (currentTsId ? taskSheets.find((ts) => ts.id.toLowerCase() === currentTsId.toLowerCase()) : null) ||
     taskSheets[0];
 
   return (
