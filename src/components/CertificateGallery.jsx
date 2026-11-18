@@ -91,7 +91,7 @@ export default function CertificateGallery({
                           <ImageIcon className="w-6 h-6" />
                         </div>
                         <div className="px-2">
-                          <SmartText text={cert.placeholder || '[Certificate file]'} />
+                          <SmartText text={cert.placeholder || 'Certificate pending upload'} />
                         </div>
                         <span className="text-[10px] text-dark-teal/60 font-mono">
                           Ready for scanned upload

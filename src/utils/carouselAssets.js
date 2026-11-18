@@ -83,3 +83,4 @@ export function buildDynamicSlides(prefix, fallbackSlides = [], defaultLabel = '
   // If zero matching files exist yet in public/assets/, return fallback slides from JSON
   return fallbackSlides.map((item, index) => normalizeSlide(item, index, defaultLabel));
 }
+

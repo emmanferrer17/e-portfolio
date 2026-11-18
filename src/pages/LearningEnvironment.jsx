@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { School, BookOpen, Clock, Building2, ChevronLeft, ChevronRight, Image as ImageIcon, Camera } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
+import ImageLightbox from '../components/ImageLightbox';
 import assetPath from '../utils/assetPath';
 import { buildDynamicSlides } from '../utils/carouselAssets';
 import leData from '../data/learning-environment.json';
@@ -25,6 +26,7 @@ export default function LearningEnvironment() {
   const totalSlides = slides.length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [failedIndices, setFailedIndices] = useState(new Set());
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
   // Clamped safe index ensuring out-of-bounds or NaN is impossible
   const safeIndex = totalSlides > 0 ? ((currentIndex % totalSlides) + totalSlides) % totalSlides : 0;
@@ -137,17 +139,20 @@ export default function LearningEnvironment() {
         <div className="relative w-full rounded-xl overflow-hidden border border-[#E4DBD0] bg-[#FAF3EB]">
           {/* Slide Viewport */}
           {!failedIndices.has(safeIndex) ? (
-            <div className="relative w-full aspect-[16/9] md:aspect-[21/9] flex items-center justify-center bg-black/5">
+            <div
+              className="relative w-full aspect-[16/9] md:aspect-[21/9] flex items-center justify-center bg-black/5 overflow-hidden group cursor-zoom-in"
+              onClick={() => setLightboxSrc(assetPath(currentSlide.src))}
+            >
               <img
                 src={assetPath(currentSlide.src)}
                 alt={currentSlide.title}
-                className="w-full h-full object-cover transition-all duration-300"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
                 onError={() => handleImageError(safeIndex)}
                 onLoad={() => handleImageLoad(safeIndex)}
               />
 
               {/* Bottom Caption Pill */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-xs text-white text-xs font-sans">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-xs text-white text-xs font-sans pointer-events-none">
                 {currentSlide.title}
               </div>
             </div>
@@ -176,7 +181,10 @@ export default function LearningEnvironment() {
             <>
               <button
                 type="button"
-                onClick={handlePrev}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
                 aria-label="Previous Photo"
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer z-10"
               >
@@ -184,7 +192,10 @@ export default function LearningEnvironment() {
               </button>
               <button
                 type="button"
-                onClick={handleNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
                 aria-label="Next Photo"
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer z-10"
               >
@@ -200,7 +211,10 @@ export default function LearningEnvironment() {
                 <button
                   key={idx}
                   type="button"
-                  onClick={() => setCurrentIndex(idx)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(idx);
+                  }}
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
                     safeIndex === idx
@@ -213,6 +227,13 @@ export default function LearningEnvironment() {
           )}
         </div>
       </section>
+
+      {/* Floating Image Lightbox */}
+      <ImageLightbox
+        src={lightboxSrc}
+        alt={currentSlide.alt || currentSlide.title}
+        onClose={() => setLightboxSrc(null)}
+      />
     </div>
   );
 }

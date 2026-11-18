@@ -6,6 +6,7 @@ import QuoteCard from '../components/QuoteCard';
 import RoleCard from '../components/RoleCard';
 import DocumentViewer from '../components/DocumentViewer';
 import SmartText from '../components/SmartText';
+import ImageLightbox from '../components/ImageLightbox';
 import assetPath from '../utils/assetPath';
 import { buildDynamicSlides } from '../utils/carouselAssets';
 import pdData from '../data/professional-development.json';
@@ -22,6 +23,16 @@ export default function ProfessionalDevelopment() {
   const [showTs9Pdf, setShowTs9Pdf] = useState(false);
   const [showTs10Pdf, setShowTs10Pdf] = useState(false);
   const [zoomImage, setZoomImage] = useState(null);
+  const [lightboxSrc, setLightboxSrc] = useState(null);
+  const [failedWebinarIndices, setFailedWebinarIndices] = useState(new Set());
+
+  const handleWebinarImageError = (idx) => {
+    setFailedWebinarIndices((prev) => {
+      const next = new Set(prev);
+      next.add(idx);
+      return next;
+    });
+  };
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-16 font-sans">
@@ -189,30 +200,32 @@ export default function ProfessionalDevelopment() {
               style={{ scrollSnapType: 'x mandatory' }}
             >
               {webinarSlides.map((slide, idx) => (
-                <div
-                  key={idx}
-                  className="h-56 w-72 shrink-0 snap-start rounded-xl overflow-hidden border border-[#E4DBD0] shadow-xs bg-[#FAF3EB] relative group cursor-pointer"
-                  onClick={() => setZoomImage({ src: assetPath(slide.src), title: slide.title || `British Council Webinar Photo ${idx + 1}` })}
-                >
-                  <img
-                    src={assetPath(slide.src)}
-                    alt={slide.title || `British Council Webinar — Photo ${idx + 1}`}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      const fallback = e.currentTarget.parentElement?.querySelector('.webinar-fallback');
-                      if (fallback) fallback.classList.remove('hidden');
-                    }}
-                  />
-                  <div className="webinar-fallback hidden h-full w-full flex flex-col items-center justify-center p-4 text-center bg-[#FAF3EB]">
-                    <Video className="w-8 h-8 text-[#7A1C24] mb-1" />
+                !failedWebinarIndices.has(idx) ? (
+                  <div
+                    key={idx}
+                    className="h-56 w-72 shrink-0 snap-start rounded-xl overflow-hidden border border-[#E4DBD0] shadow-xs bg-[#FAF3EB] relative group cursor-zoom-in"
+                    onClick={() => setLightboxSrc(assetPath(slide.src))}
+                  >
+                    <img
+                      src={assetPath(slide.src)}
+                      alt={slide.title || `British Council Webinar — Photo ${idx + 1}`}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={() => handleWebinarImageError(idx)}
+                    />
+                    <div className="absolute inset-0 bg-[#0F3D3A]/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white pointer-events-none">
+                      <ZoomIn className="w-6 h-6" />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    key={idx}
+                    className="h-56 w-72 shrink-0 snap-start rounded-xl overflow-hidden border border-dashed border-[#E4DBD0] shadow-xs bg-[#FAF3EB] flex flex-col items-center justify-center p-4 text-center space-y-1.5"
+                  >
+                    <Video className="w-8 h-8 text-[#7A1C24] mb-0.5" />
                     <p className="text-xs font-semibold text-[#0F3D3A]">{slide.title || `Photo ${idx + 1}`}</p>
                     <span className="text-[10px] text-[#7A1C24] font-medium">Pending Upload</span>
                   </div>
-                  <div className="absolute inset-0 bg-[#0F3D3A]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                    <ZoomIn className="w-6 h-6" />
-                  </div>
-                </div>
+                )
               ))}
             </div>
           </div>
@@ -337,7 +350,7 @@ export default function ProfessionalDevelopment() {
                   <div className="cert-fallback hidden p-4 text-center space-y-1">
                     <Award className="w-8 h-8 text-[#7A1C24] mx-auto" />
                     <p className="text-xs font-bold text-[#0F3D3A]">{cert.organization}</p>
-                    <p className="text-[10px] text-[#1E1B18]">{cert.imageSrc}</p>
+                    <p className="text-[10px] text-[#1E1B18]/70">Certificate pending upload</p>
                   </div>
                   <div className="absolute inset-0 bg-[#0F3D3A]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                     <ZoomIn className="w-6 h-6" />
@@ -432,6 +445,13 @@ export default function ProfessionalDevelopment() {
           </div>
         </div>
       )}
+
+      {/* Floating Image Lightbox for Webinar Documentation Carousel Photos */}
+      <ImageLightbox
+        src={lightboxSrc}
+        alt="Webinar documentation photo"
+        onClose={() => setLightboxSrc(null)}
+      />
     </div>
   );
 }
