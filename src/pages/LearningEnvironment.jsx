@@ -2,21 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { School, BookOpen, Clock, Building2, ChevronLeft, ChevronRight, Image as ImageIcon, Camera } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import assetPath from '../utils/assetPath';
+import { buildDynamicSlides } from '../utils/carouselAssets';
 import leData from '../data/learning-environment.json';
 
 export default function LearningEnvironment() {
   const { checklistItem, title, journeyNote, vision, mission, history, groundsImages = [], facilitiesDescription } = leData;
 
-  // Full configured list of slides (never filtered out to prevent 0-length crash)
-  const slides = (groundsImages.length > 0 ? groundsImages : [
+  // Dynamically built slides from public/assets matching school-grounds-* with JSON fallback
+  const fallbackGrounds = groundsImages.length > 0 ? groundsImages : [
     '/assets/school-grounds-1.jpg',
     '/assets/school-grounds-2.jpg',
     '/assets/school-grounds-3.jpg',
     '/assets/school-grounds-4.jpg',
-  ]).map((src, idx) => ({
-    src,
-    title: `Campus Grounds & Facilities — View ${idx + 1}`,
-  }));
+  ];
+
+  const slides = buildDynamicSlides(
+    'school-grounds',
+    fallbackGrounds,
+    'Campus & Learning Environment Photo'
+  );
 
   const totalSlides = slides.length;
   const [currentIndex, setCurrentIndex] = useState(0);

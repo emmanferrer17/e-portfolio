@@ -4,6 +4,7 @@ import SectionHeader from '../components/SectionHeader';
 import DocumentViewer from '../components/DocumentViewer';
 import SmartText from '../components/SmartText';
 import assetPath from '../utils/assetPath';
+import { buildDynamicSlides } from '../utils/carouselAssets';
 import cbarData from '../data/cbar.json';
 
 export default function Cbar() {
@@ -23,16 +24,19 @@ export default function Cbar() {
   const [activeDeliverableId, setActiveDeliverableId] = useState(deliverables[0]?.id || 'ts1-data-bank');
   const activeDeliverable = deliverables.find((d) => d.id === activeDeliverableId) || deliverables[0];
 
-  // Full configured list of carousel slides (never filtered out to prevent 0-length crash)
-  const cbarSlides = (carouselImages && carouselImages.length > 0 ? carouselImages : [
+  // Dynamically built slides from public/assets matching cbar-doc-* with JSON fallback
+  const fallbackCbar = carouselImages && carouselImages.length > 0 ? carouselImages : [
     '/assets/cbar-doc-1.jpg',
     '/assets/cbar-doc-2.jpg',
     '/assets/cbar-doc-3.jpg',
     '/assets/cbar-doc-4.jpg',
-  ]).map((src, idx) => ({
-    src,
-    title: `Action Research Documentation — Artifact ${idx + 1}`,
-  }));
+  ];
+
+  const cbarSlides = buildDynamicSlides(
+    'cbar-doc',
+    fallbackCbar,
+    'Action Research Documentation'
+  );
 
   const totalCbarSlides = cbarSlides.length;
   const [carouselIndex, setCarouselIndex] = useState(0);

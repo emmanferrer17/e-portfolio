@@ -7,11 +7,17 @@ import RoleCard from '../components/RoleCard';
 import DocumentViewer from '../components/DocumentViewer';
 import SmartText from '../components/SmartText';
 import assetPath from '../utils/assetPath';
+import { buildDynamicSlides } from '../utils/carouselAssets';
 import pdData from '../data/professional-development.json';
 
 export default function ProfessionalDevelopment() {
   const { checklistItem, title, journeyNote, overview, ts9, ts10, visualCertificates = [], attendanceCertificates = [] } = pdData;
-  const webinarImages = ts9.webinarImages || [];
+  const fallbackWebinar = ts9.webinarImages || [];
+  const webinarSlides = buildDynamicSlides(
+    'webinar',
+    fallbackWebinar,
+    'Webinar & Training Documentation'
+  );
 
   const [showTs9Pdf, setShowTs9Pdf] = useState(false);
   const [showTs10Pdf, setShowTs10Pdf] = useState(false);
@@ -170,11 +176,11 @@ export default function ProfessionalDevelopment() {
         </div>
 
         {/* British Council Webinar Image Carousel */}
-        {webinarImages.length > 0 && (
+        {webinarSlides.length > 0 && (
           <div className="space-y-3 pt-4 border-t border-[#E4DBD0]">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-semibold uppercase tracking-wider text-[#0F3D3A]">
-                British Council Webinar Documentation Photos (6 Images)
+                British Council Webinar Documentation Photos ({webinarSlides.length} Images)
               </h3>
               <span className="text-xs text-[#7A1C24] font-semibold">Scroll horizontally</span>
             </div>
@@ -182,15 +188,15 @@ export default function ProfessionalDevelopment() {
               className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory scroll-smooth"
               style={{ scrollSnapType: 'x mandatory' }}
             >
-              {webinarImages.map((src, idx) => (
+              {webinarSlides.map((slide, idx) => (
                 <div
                   key={idx}
                   className="h-56 w-72 shrink-0 snap-start rounded-xl overflow-hidden border border-[#E4DBD0] shadow-xs bg-[#FAF3EB] relative group cursor-pointer"
-                  onClick={() => setZoomImage({ src: assetPath(src), title: `British Council Webinar Photo ${idx + 1}` })}
+                  onClick={() => setZoomImage({ src: assetPath(slide.src), title: slide.title || `British Council Webinar Photo ${idx + 1}` })}
                 >
                   <img
-                    src={assetPath(src)}
-                    alt={`British Council Webinar — Photo ${idx + 1}`}
+                    src={assetPath(slide.src)}
+                    alt={slide.title || `British Council Webinar — Photo ${idx + 1}`}
                     className="h-full w-full object-cover transition-transform group-hover:scale-105"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
@@ -200,8 +206,8 @@ export default function ProfessionalDevelopment() {
                   />
                   <div className="webinar-fallback hidden h-full w-full flex flex-col items-center justify-center p-4 text-center bg-[#FAF3EB]">
                     <Video className="w-8 h-8 text-[#7A1C24] mb-1" />
-                    <p className="text-xs font-semibold text-[#0F3D3A]">Photo {idx + 1}</p>
-                    <span className="text-[10px] text-[#1E1B18]">{src}</span>
+                    <p className="text-xs font-semibold text-[#0F3D3A]">{slide.title || `Photo ${idx + 1}`}</p>
+                    <span className="text-[10px] text-[#7A1C24] font-medium">Pending Upload</span>
                   </div>
                   <div className="absolute inset-0 bg-[#0F3D3A]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                     <ZoomIn className="w-6 h-6" />
