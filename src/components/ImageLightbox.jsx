@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 /**
  * ImageLightbox
  * Minimal, title-free floating lightbox window displaying a photo at its actual/natural size
- * constrained cleanly to the viewport.
+ * constrained cleanly to the viewport. Rendered via createPortal above all stacking contexts.
  *
  * @param {string|null} src - URL/path of the image to display (modal hidden if falsy)
  * @param {string} [alt] - Accessibility alt text for the image
@@ -30,11 +31,11 @@ export default function ImageLightbox({ src, alt = 'Enlarged documentation photo
     };
   }, [src, onClose]);
 
-  if (!src) return null;
+  if (!src || typeof document === 'undefined') return null;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+      className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -45,7 +46,7 @@ export default function ImageLightbox({ src, alt = 'Enlarged documentation photo
         type="button"
         onClick={onClose}
         aria-label="Close image"
-        className="fixed top-5 right-5 z-50 w-10 h-10 rounded-full bg-white/95 text-[#1E1B18] hover:bg-white hover:text-[#7A1C24] shadow-md flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7A1C24]"
+        className="fixed top-5 right-5 z-[110] w-10 h-10 rounded-full bg-white/95 text-[#1E1B18] hover:bg-white hover:text-[#7A1C24] shadow-lg flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7A1C24]"
       >
         <X className="w-5 h-5" />
       </button>
@@ -58,9 +59,11 @@ export default function ImageLightbox({ src, alt = 'Enlarged documentation photo
         <img
           src={src}
           alt={alt}
-          className="max-w-[92vw] max-h-[90vh] w-auto h-auto object-contain rounded-xl shadow-2xl select-none"
+          className="max-w-[92vw] max-h-[88vh] w-auto h-auto object-contain rounded-xl shadow-2xl select-none"
         />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
+
