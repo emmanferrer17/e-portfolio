@@ -67,7 +67,9 @@ export default function About() {
               <span className="font-semibold uppercase tracking-wider text-[#0F3D3A]">
                 Official Curriculum Vitae PDF Artifact
               </span>
-              <span className="text-xs text-[#7A1C24] font-semibold font-mono">/pdfs/cv.pdf</span>
+              <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+                Verified Document
+              </span>
             </div>
             <div className="h-[650px] rounded-lg overflow-hidden border border-[#E4DBD0] bg-white">
               <DocumentViewer

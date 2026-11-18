@@ -51,7 +51,9 @@ export default function Appendices() {
         <div className="rounded-xl border border-[#E4DBD0] bg-white overflow-hidden shadow-xs flex flex-col">
           <div className="px-4 py-2 bg-[#FAF3EB] border-b border-[#E4DBD0] flex items-center justify-between text-xs">
             <span className="font-bold text-[#0F3D3A]">{weeklyMentoringForms.title}</span>
-            <span className="font-mono text-[#7A1C24] font-semibold">{weeklyMentoringForms.pdfUrl}</span>
+            <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+              Verified Document
+            </span>
           </div>
           <div className="h-[78vh] min-h-[620px] w-full bg-white">
             <DocumentViewer
@@ -81,16 +83,18 @@ export default function Appendices() {
             </p>
           </div>
 
-          <div className="text-xs font-bold px-3 py-1.5 rounded-lg bg-[#7A1C24] text-white shadow-xs shrink-0 font-mono uppercase tracking-wider">
-            {dailyTimeRecord.totalHoursNotice}
-          </div>
+          <span className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded bg-[#FAF3EB] text-[#0F3D3A] border border-[#E4DBD0] shrink-0">
+            Official DTR Record
+          </span>
         </div>
 
         {/* Full-width DTR PDF DocumentViewer */}
         <div className="rounded-xl border border-[#E4DBD0] bg-white overflow-hidden shadow-xs flex flex-col">
           <div className="px-4 py-2 bg-[#FAF3EB] border-b border-[#E4DBD0] flex items-center justify-between text-xs">
             <span className="font-bold text-[#0F3D3A]">{dailyTimeRecord.title}</span>
-            <span className="font-mono text-[#7A1C24] font-semibold">{dailyTimeRecord.pdfUrl}</span>
+            <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+              Verified Document
+            </span>
           </div>
           <div className="h-[78vh] min-h-[620px] w-full bg-white">
             <DocumentViewer

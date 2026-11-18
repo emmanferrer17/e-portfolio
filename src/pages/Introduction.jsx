@@ -60,8 +60,8 @@ export default function Introduction() {
                     <p className="text-xs font-bold text-[#0F3D3A] leading-snug">
                       Pre-Service Educator Portrait
                     </p>
-                    <span className="text-[10px] text-[#1E1B18] font-mono bg-white px-2 py-0.5 rounded border border-[#E4DBD0]">
-                      /assets/student-photo.png
+                    <span className="text-[11px] text-[#7A1C24] font-medium">
+                      Portrait Pending Upload
                     </span>
                   </div>
                 )}

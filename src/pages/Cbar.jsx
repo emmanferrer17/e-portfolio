@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Users, BookOpen, FileText, ChevronLeft, ChevronRight, Image as ImageIcon, Award, Sparkles } from 'lucide-react';
+import { Search, Users, BookOpen, FileText, ChevronLeft, ChevronRight, Image as ImageIcon, Award, Sparkles, Camera } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import DocumentViewer from '../components/DocumentViewer';
 import SmartText from '../components/SmartText';
@@ -23,41 +23,50 @@ export default function Cbar() {
   const [activeDeliverableId, setActiveDeliverableId] = useState(deliverables[0]?.id || 'ts1-data-bank');
   const activeDeliverable = deliverables.find((d) => d.id === activeDeliverableId) || deliverables[0];
 
-  // Carousel images filtering
-  const defaultCarousel = carouselImages.length > 0 ? carouselImages : [
+  // Full configured list of carousel slides (never filtered out to prevent 0-length crash)
+  const cbarSlides = (carouselImages && carouselImages.length > 0 ? carouselImages : [
     '/assets/cbar-doc-1.jpg',
     '/assets/cbar-doc-2.jpg',
     '/assets/cbar-doc-3.jpg',
     '/assets/cbar-doc-4.jpg',
-  ];
+  ]).map((src, idx) => ({
+    src,
+    title: `Action Research Documentation — Artifact ${idx + 1}`,
+  }));
 
-  const [failedImages, setFailedImages] = useState(new Set());
+  const totalCbarSlides = cbarSlides.length;
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [failedCarouselIndices, setFailedCarouselIndices] = useState(new Set());
 
-  const validImages = defaultCarousel.filter((img) => !failedImages.has(img));
-
-  const handleImageError = (imgUrl) => {
-    setFailedImages((prev) => {
-      const updated = new Set(prev);
-      updated.add(imgUrl);
-      return updated;
-    });
-  };
-
-  useEffect(() => {
-    if (carouselIndex >= validImages.length && validImages.length > 0) {
-      setCarouselIndex(0);
-    }
-  }, [validImages.length, carouselIndex]);
+  // Clamped safe index ensuring out-of-bounds or NaN is impossible
+  const safeCarouselIndex = totalCbarSlides > 0 ? ((carouselIndex % totalCbarSlides) + totalCbarSlides) % totalCbarSlides : 0;
+  const currentCbarSlide = cbarSlides[safeCarouselIndex] || { src: '', title: `Research Artifact ${safeCarouselIndex + 1}` };
 
   const handlePrev = () => {
-    if (validImages.length === 0) return;
-    setCarouselIndex((prev) => (prev === 0 ? validImages.length - 1 : prev - 1));
+    if (totalCbarSlides === 0) return;
+    setCarouselIndex((prev) => ((prev - 1) % totalCbarSlides + totalCbarSlides) % totalCbarSlides);
   };
 
   const handleNext = () => {
-    if (validImages.length === 0) return;
-    setCarouselIndex((prev) => (prev === validImages.length - 1 ? 0 : prev + 1));
+    if (totalCbarSlides === 0) return;
+    setCarouselIndex((prev) => (prev + 1) % totalCbarSlides);
+  };
+
+  const handleImageError = (idx) => {
+    setFailedCarouselIndices((prev) => {
+      const next = new Set(prev);
+      next.add(idx);
+      return next;
+    });
+  };
+
+  const handleImageLoad = (idx) => {
+    setFailedCarouselIndices((prev) => {
+      if (!prev.has(idx)) return prev;
+      const next = new Set(prev);
+      next.delete(idx);
+      return next;
+    });
   };
 
   return (
@@ -193,7 +202,9 @@ export default function Cbar() {
                 <span className="font-bold text-[#0F3D3A]">{activeDeliverable.title}: </span>
                 <span className="text-[#1E1B18]">{activeDeliverable.description}</span>
               </div>
-              <span className="font-mono text-[#7A1C24] font-semibold">{activeDeliverable.pdfUrl}</span>
+              <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+                Verified Deliverable
+              </span>
             </div>
 
             <div className="h-[78vh] min-h-[620px] w-full bg-white">
@@ -220,72 +231,81 @@ export default function Cbar() {
               Classroom observation artifacts, proponent meetings, and behavioral data collection sessions.
             </p>
           </div>
-          {validImages.length > 0 && (
-            <span className="px-3 py-1 rounded-full bg-[#FAF3EB] border border-[#E4DBD0] text-[#0F3D3A] text-xs font-mono font-bold">
-              Photo {carouselIndex + 1} of {validImages.length}
-            </span>
-          )}
+          <span className="px-3 py-1 rounded-full bg-[#FAF3EB] border border-[#E4DBD0] text-[#0F3D3A] text-xs font-mono font-bold">
+            Photo {safeCarouselIndex + 1} of {totalCbarSlides}
+          </span>
         </div>
 
         <div className="relative w-full rounded-xl overflow-hidden border border-[#E4DBD0] bg-[#FAF3EB]">
-          {validImages.length > 0 ? (
+          {/* Slide Viewport */}
+          {!failedCarouselIndices.has(safeCarouselIndex) ? (
             <div className="relative w-full aspect-[16/9] md:aspect-[21/9] flex items-center justify-center bg-black/5">
               <img
-                src={assetPath(validImages[carouselIndex])}
-                alt={`Research Documentation Photo ${carouselIndex + 1}`}
+                src={assetPath(currentCbarSlide.src)}
+                alt={currentCbarSlide.title}
                 className="w-full h-full object-cover transition-all duration-300"
-                onError={() => handleImageError(validImages[carouselIndex])}
+                onError={() => handleImageError(safeCarouselIndex)}
+                onLoad={() => handleImageLoad(safeCarouselIndex)}
               />
 
-              {validImages.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    aria-label="Previous Documentation Photo"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    aria-label="Next Documentation Photo"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </>
-              )}
-
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-xs text-white text-xs font-mono">
-                Artifact: {validImages[carouselIndex].split('/').pop()}
+              {/* Bottom Caption Pill */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-xs text-white text-xs font-sans">
+                {currentCbarSlide.title}
               </div>
             </div>
           ) : (
-            <div className="p-12 text-center space-y-2 flex flex-col items-center justify-center min-h-[260px]">
+            <div className="bg-[#FAF3EB] border border-dashed border-[#E4DBD0] rounded-xl h-72 md:h-96 flex flex-col items-center justify-center text-center p-6 space-y-3">
               <div className="w-12 h-12 rounded-full bg-white border border-[#E4DBD0] flex items-center justify-center text-[#7A1C24] shadow-xs">
-                <ImageIcon className="w-6 h-6" />
+                <Camera className="w-6 h-6" />
               </div>
-              <p className="text-sm font-bold text-[#0F3D3A]">
-                Action Research Photo Documentation
-              </p>
-              <p className="text-xs text-[#1E1B18] max-w-md">
-                Looking for cbar-doc-1.jpg through cbar-doc-4.jpg in public/assets/.
-              </p>
+              <div className="space-y-1 max-w-md">
+                <p className="text-sm font-bold text-[#0F3D3A]">
+                  {currentCbarSlide.title}
+                </p>
+                <p className="text-xs text-[#1E1B18]/70">
+                  Documentation photo pending upload
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E4DBD0] text-[#0F3D3A] text-[11px] font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                Photo {safeCarouselIndex + 1} of {totalCbarSlides}
+              </span>
             </div>
           )}
 
-          {validImages.length > 1 && (
+          {/* Prev/Next Controls - Always available when totalCbarSlides > 1 */}
+          {totalCbarSlides > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous Documentation Photo"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer z-10"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next Documentation Photo"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0F3D3A]/80 text-white hover:bg-[#7A1C24] flex items-center justify-center shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer z-10"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
+
+          {/* Dots Indicator - Always available when totalCbarSlides > 1 */}
+          {totalCbarSlides > 1 && (
             <div className="p-3 bg-white border-t border-[#E4DBD0] flex items-center justify-center space-x-2">
-              {validImages.map((_, idx) => (
+              {cbarSlides.map((_, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setCarouselIndex(idx)}
                   aria-label={`Go to documentation photo ${idx + 1}`}
                   className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                    carouselIndex === idx
+                    safeCarouselIndex === idx
                       ? 'bg-[#7A1C24] w-6'
                       : 'bg-[#0F3D3A]/20 hover:bg-[#0F3D3A]/40'
                   }`}

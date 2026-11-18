@@ -128,7 +128,9 @@ export default function Philosophy() {
                 <span className="font-semibold uppercase tracking-wider text-[#0F3D3A]">
                   TS11: Teaching Philosophy Manuscript
                 </span>
-                <span className="text-xs text-[#7A1C24] font-semibold font-mono">/pdfs/ts11-teaching-philosophy.pdf</span>
+                <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+                  Verified Manuscript
+                </span>
               </div>
               <div className="h-[650px] rounded-lg overflow-hidden border border-[#E4DBD0] bg-white">
                 <DocumentViewer
@@ -185,12 +187,12 @@ export default function Philosophy() {
                 <span className="text-[10px] uppercase font-bold tracking-wider text-[#FAF3EB]/80 block">
                   {activeModal.subtitle}
                 </span>
-                <h3 className="text-lg md:text-xl font-bold">{activeModal.title}</h3>
+                <h3 className="!text-white font-bold text-lg md:text-xl">{activeModal.title}</h3>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveModal(null)}
-                className="p-1 rounded-lg hover:bg-white/10 text-white transition-colors cursor-pointer"
+                className="p-1 rounded-lg hover:bg-white/10 text-white hover:text-[#FAF3EB] transition-colors cursor-pointer"
                 aria-label="Close Modal"
               >
                 <X className="w-6 h-6" />
@@ -211,7 +213,7 @@ export default function Philosophy() {
               />
               <div className="modal-fallback hidden p-8 text-center text-[#0F3D3A] space-y-1">
                 <p className="font-bold">{activeModal.title}</p>
-                <p className="text-xs text-[#1E1B18]">Loading from {activeModal.imageSrc}</p>
+                <p className="text-xs text-[#1E1B18]/70">Artifact image pending upload</p>
               </div>
             </div>
 

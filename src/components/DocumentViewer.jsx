@@ -146,14 +146,8 @@ export default function DocumentViewer({
           </h3>
 
           <p className="text-sm text-[#1E1B18] leading-relaxed">
-            Place this PDF inside <code className="px-1.5 py-0.5 rounded bg-white border border-[#E4DBD0] font-mono text-xs font-bold text-[#0F3D3A]">public/pdfs/</code> and reload the page.
+            This document deliverable is pending official upload and will be displayed here once verified.
           </p>
-        </div>
-
-        <div className="mt-4 p-3 rounded-lg bg-white border border-[#E4DBD0] text-xs font-mono text-[#0F3D3A] flex items-center gap-2 shadow-xs">
-          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
-          <span className="font-semibold text-[#0F3D3A]">Expected filename:</span>
-          <span className="font-bold text-[#7A1C24]">{expectedFilename}</span>
         </div>
 
         <button

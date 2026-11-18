@@ -114,8 +114,8 @@ export default function TaskSheetSection({ taskSheet, journeyNote, allTaskSheets
               Verified Deliverable: {taskSheet.num} — {taskSheet.fullTitle || taskSheet.title}
             </span>
           </div>
-          <span className="font-mono text-xs text-[#7A1C24] font-semibold">
-            {taskSheet.pdfUrl}
+          <span className="inline-flex items-center gap-1 font-semibold text-[#0F3D3A] bg-white border border-[#E4DBD0] px-2.5 py-0.5 rounded-full text-[11px]">
+            Verified Document
           </span>
         </div>
 
